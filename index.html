@@ -883,6 +883,11 @@
 
   document.getElementById('btn-delete').onclick = function(){
     if(!editingId) return;
+    var loc = locations.find(function(l){return l.id===editingId;});
+    var name = loc ? loc.name : 'este local';
+    if(!window.confirm('¿Seguro que quieres eliminar "' + name + '"? Esta acción no se puede deshacer.')){
+      return;
+    }
     var delBtn = document.getElementById('btn-delete');
     delBtn.disabled = true;
     deleteLocationRemote(editingId).then(function(){
