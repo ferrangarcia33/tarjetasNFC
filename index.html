@@ -4,6 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>TapRuta</title>
+<link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAB90lEQVR4nO2XsU8TYRjGf9+VSw97WCikUEQ7NA5uRDER0piw+hdoTNSBaGAyLC7MjkwMLLgQgRhDwsYEAzqYCGFRQgwJWpR0gEOjLe31TocG0x5n776SXh14pvve+97nee7N+92XV+CC7uvp327xsyK78UY4Y1WBRgnXMqIELe7UUoIWd5pQvDY2GqIZX1+JlnqSElGTB7cMBpJ5Oi5Y5IqCj/sas+86+PBNk+KSrkAyVmTq3lf0sM3PgsKeoRKLWMTbSli24NligvUvrb75pCswkj5ED9usfYrwfDnOsVluo0eDhzwcNBhJH7A+1+ebT7oJ+y/nAZhe6/wrDrDwvp2tfY1CSY5SugJ62AYg+6M69dhUGJu/JEtXXxNWYuJOli7dqoo9fdUbnIFrPQV6282686UNfM+HiLZaJKIl9gyV+y+uAHBRs1ga25U2IN2Em5nyERu9fYCmlvtBAHdvHkmLQx0VmHkb40Yyx1DqF68ffyZjqHRGLCJhm5IlaAnJ/VilK5AxVJ687GNlW8e0BVfjRXKmwsRSD0f5kCxd8++Cpt+G5wbODXgaWB3f8b322uuGmsfQD4EfDE+m/vmuZgUqE53PXms/4p4GVsd3ThEMT6ZcKyOztxICmjMXQHlC+j9OgdvQ2GicaCrOQJDi4JiOTxDkeP4HYJmwMP/q7b0AAAAASUVORK5CYII=">
+<link rel="apple-touch-icon" href="data:image/png;base64,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">
+<link rel="icon" type="image/png" sizes="192x192" href="data:image/png;base64,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">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="TapRuta">
+<meta name="theme-color" content="#17323C">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
@@ -345,16 +351,79 @@
     #panel{width:100%;max-width:100%;}
     #locate-btn{bottom:calc(64% + 16px);}
   }
+
+  /* ---------- Auth screen ---------- */
+  #auth-screen{
+    position:fixed;inset:0;background:var(--ink);
+    z-index:1000;display:flex;align-items:center;justify-content:center;
+    padding:20px;
+  }
+  #auth-box{
+    width:360px;max-width:100%;
+    background:var(--ink-2);border-radius:14px;
+    padding:28px 26px;color:var(--paper);
+  }
+  #auth-brand{display:flex;align-items:center;gap:10px;font-size:22px;font-weight:700;margin-bottom:6px;}
+  #auth-subtitle{font-size:13px;color:var(--paper-dim);margin-bottom:22px;line-height:1.4;}
+  #auth-tabs{display:flex;gap:6px;margin-bottom:20px;background:rgba(0,0,0,0.2);border-radius:9px;padding:4px;}
+  .auth-tab{
+    flex:1;text-align:center;padding:8px;border-radius:6px;cursor:pointer;
+    font-size:13px;font-weight:600;color:var(--paper-dim);
+  }
+  .auth-tab.active{background:var(--gold);color:var(--ink);}
+  #auth-error{
+    display:none;background:rgba(193,88,74,0.15);color:#e58b7c;
+    border:1px solid rgba(193,88,74,0.4);border-radius:7px;
+    padding:9px 11px;font-size:12.5px;margin-bottom:14px;line-height:1.4;
+  }
+  #auth-form .field label{color:var(--paper-dim);}
+  #auth-form .field input{background:rgba(244,242,232,0.06);border-color:var(--line);color:var(--paper);}
+  #auth-form .field input:focus{border-color:var(--gold);}
+  #auth-submit{width:100%;margin-top:4px;background:var(--gold);color:var(--ink);}
+  #auth-submit:hover{background:var(--gold-2);}
+  #auth-submit:disabled{opacity:0.6;cursor:default;}
+
+  #logout-btn-inline{
+    margin-top:10px;background:none;border:none;color:var(--paper-dim);
+    font-size:11px;cursor:pointer;text-decoration:underline;text-underline-offset:2px;
+    padding:0;
+  }
+  #logout-btn-inline:hover{color:var(--paper);}
 </style>
 </head>
 <body>
-<div id="app">
+
+<div id="auth-screen">
+  <div id="auth-box">
+    <div id="auth-brand"><div class="brand-mark">T</div>TapRuta</div>
+    <div id="auth-subtitle">Inicia sesión o crea una cuenta para guardar tus locales.</div>
+    <div id="auth-tabs">
+      <div class="auth-tab active" data-mode="signin">Iniciar sesión</div>
+      <div class="auth-tab" data-mode="signup">Crear cuenta</div>
+    </div>
+    <div id="auth-error"></div>
+    <div id="auth-form">
+      <div class="field">
+        <label for="auth-email">Correo electrónico</label>
+        <input type="text" id="auth-email" placeholder="tucorreo@ejemplo.com" autocomplete="username">
+      </div>
+      <div class="field">
+        <label for="auth-password">Contraseña</label>
+        <input type="password" id="auth-password" placeholder="Mínimo 6 caracteres" autocomplete="current-password">
+      </div>
+      <button class="btn" id="auth-submit">Iniciar sesión</button>
+    </div>
+  </div>
+</div>
+
+<div id="app" style="display:none;">
 
   <div id="sidebar">
     <div id="sidebar-header">
       <div id="sidebar-drag"></div>
       <div class="brand"><div class="brand-mark">T</div>TapRuta</div>
       <div class="tagline">Tu mapa de ventas puerta a puerta. Toca cualquier punto del mapa para registrar un local.</div>
+      <button id="logout-btn-inline">Cerrar sesión</button>
     </div>
 
     <div id="search-wrap">
@@ -472,11 +541,98 @@
 
   var SUPABASE_URL = 'https://dkzrfijkbvvaibwlpfud.supabase.co';
   var SUPABASE_KEY = 'sb_publishable_Gk9YBrP30J7HRc7sGHgB5Q_oUk8gDaQ';
-  var SB_HEADERS = {
-    'apikey': SUPABASE_KEY,
-    'Authorization': 'Bearer ' + SUPABASE_KEY,
-    'Content-Type': 'application/json'
-  };
+  var session = null; // {access_token, refresh_token, user}
+
+  function sbHeaders(){
+    var token = (session && session.access_token) ? session.access_token : SUPABASE_KEY;
+    return {
+      'apikey': SUPABASE_KEY,
+      'Authorization': 'Bearer ' + token,
+      'Content-Type': 'application/json'
+    };
+  }
+
+  function saveSession(s){
+    session = s;
+    try{ localStorage.setItem('taparuta_session', JSON.stringify(s)); }catch(e){}
+  }
+  function clearSession(){
+    session = null;
+    try{ localStorage.removeItem('taparuta_session'); }catch(e){}
+  }
+  function loadStoredSession(){
+    try{
+      var raw = localStorage.getItem('taparuta_session');
+      return raw ? JSON.parse(raw) : null;
+    }catch(e){ return null; }
+  }
+
+  function authRequest(path, body){
+    return fetch(SUPABASE_URL + '/auth/v1/' + path, {
+      method: 'POST',
+      headers: { 'apikey': SUPABASE_KEY, 'Content-Type': 'application/json' },
+      body: JSON.stringify(body)
+    }).then(function(r){
+      return r.json().then(function(data){
+        if(!r.ok){ throw new Error(data.msg || data.error_description || data.error || 'Error de autenticación'); }
+        return data;
+      });
+    });
+  }
+
+  function signUp(email, password){
+    return authRequest('signup', {email: email, password: password});
+  }
+  function signIn(email, password){
+    return fetch(SUPABASE_URL + '/auth/v1/token?grant_type=password', {
+      method: 'POST',
+      headers: { 'apikey': SUPABASE_KEY, 'Content-Type': 'application/json' },
+      body: JSON.stringify({email: email, password: password})
+    }).then(function(r){
+      return r.json().then(function(data){
+        if(!r.ok){ throw new Error(data.msg || data.error_description || data.error || 'Credenciales incorrectas'); }
+        return data;
+      });
+    });
+  }
+
+  function refreshSession(){
+    if(!session || !session.refresh_token){ return Promise.reject(new Error('no refresh token')); }
+    return fetch(SUPABASE_URL + '/auth/v1/token?grant_type=refresh_token', {
+      method: 'POST',
+      headers: { 'apikey': SUPABASE_KEY, 'Content-Type': 'application/json' },
+      body: JSON.stringify({refresh_token: session.refresh_token})
+    }).then(function(r){
+      return r.json().then(function(data){
+        if(!r.ok){ throw new Error('refresh failed'); }
+        saveSession({access_token: data.access_token, refresh_token: data.refresh_token, user: data.user});
+        return data;
+      });
+    });
+  }
+
+  function forceLogout(){
+    clearSession();
+    document.getElementById('app').style.display = 'none';
+    document.getElementById('auth-screen').style.display = 'flex';
+  }
+
+  function sbFetch(url, opts){
+    opts = opts || {};
+    return fetch(url, opts).then(function(r){
+      if(r.status === 401 && session){
+        return refreshSession().then(function(){
+          var retryOpts = Object.assign({}, opts, {headers: sbHeaders()});
+          return fetch(url, retryOpts);
+        }).catch(function(){
+          forceLogout();
+          throw new Error('Sesión expirada. Vuelve a iniciar sesión.');
+        });
+      }
+      return r;
+    });
+  }
+
   var locations = [];
   var activeFilter = 'all';
   var searchTerm = '';
@@ -654,7 +810,7 @@
   }
 
   function loadLocations(){
-    fetch(SUPABASE_URL + '/rest/v1/locations?select=*', {headers: SB_HEADERS})
+    sbFetch(SUPABASE_URL + '/rest/v1/locations?select=*', {headers: sbHeaders()})
       .then(function(r){
         if(!r.ok) throw new Error('HTTP ' + r.status);
         return r.json();
@@ -675,9 +831,9 @@
   }
 
   function insertLocation(loc){
-    return fetch(SUPABASE_URL + '/rest/v1/locations', {
+    return sbFetch(SUPABASE_URL + '/rest/v1/locations', {
       method: 'POST',
-      headers: Object.assign({}, SB_HEADERS, {'Prefer':'return=representation'}),
+      headers: Object.assign({}, sbHeaders(), {'Prefer':'return=representation'}),
       body: JSON.stringify([toDb(loc)])
     }).then(function(r){
       if(!r.ok) throw new Error('HTTP ' + r.status);
@@ -697,9 +853,9 @@
     if('contact' in patch) dbPatch.contact = patch.contact;
     if('notes' in patch) dbPatch.notes = patch.notes;
     if('updatedAt' in patch) dbPatch.updated_at = patch.updatedAt;
-    return fetch(SUPABASE_URL + '/rest/v1/locations?id=eq.' + encodeURIComponent(id), {
+    return sbFetch(SUPABASE_URL + '/rest/v1/locations?id=eq.' + encodeURIComponent(id), {
       method: 'PATCH',
-      headers: SB_HEADERS,
+      headers: sbHeaders(),
       body: JSON.stringify(dbPatch)
     }).then(function(r){
       if(!r.ok) throw new Error('HTTP ' + r.status);
@@ -707,9 +863,9 @@
   }
 
   function deleteLocationRemote(id){
-    return fetch(SUPABASE_URL + '/rest/v1/locations?id=eq.' + encodeURIComponent(id), {
+    return sbFetch(SUPABASE_URL + '/rest/v1/locations?id=eq.' + encodeURIComponent(id), {
       method: 'DELETE',
-      headers: SB_HEADERS
+      headers: sbHeaders()
     }).then(function(r){
       if(!r.ok) throw new Error('HTTP ' + r.status);
     });
@@ -981,6 +1137,78 @@
     URL.revokeObjectURL(url);
   };
 
+  // ---------------- Auth screen ----------------
+  var authMode = 'signin';
+  var authTabs = document.querySelectorAll('.auth-tab');
+  var authError = document.getElementById('auth-error');
+  var authSubmit = document.getElementById('auth-submit');
+  var authEmail = document.getElementById('auth-email');
+  var authPassword = document.getElementById('auth-password');
+
+  authTabs.forEach(function(tab){
+    tab.addEventListener('click', function(){
+      authMode = tab.dataset.mode;
+      authTabs.forEach(function(t){ t.classList.toggle('active', t===tab); });
+      authSubmit.textContent = authMode==='signin' ? 'Iniciar sesión' : 'Crear cuenta';
+      authError.style.display = 'none';
+    });
+  });
+
+  function showAuthError(msg){
+    authError.textContent = msg;
+    authError.style.display = 'block';
+  }
+
+  function enterApp(){
+    document.getElementById('auth-screen').style.display = 'none';
+    document.getElementById('app').style.display = 'flex';
+    map.invalidateSize();
+    loadLocations();
+  }
+
+  authSubmit.addEventListener('click', function(){
+    var email = authEmail.value.trim();
+    var password = authPassword.value;
+    authError.style.display = 'none';
+    if(!email || !password){
+      showAuthError('Rellena correo y contraseña.');
+      return;
+    }
+    if(password.length < 6){
+      showAuthError('La contraseña debe tener al menos 6 caracteres.');
+      return;
+    }
+    authSubmit.disabled = true;
+    var originalText = authSubmit.textContent;
+    authSubmit.textContent = 'Un momento...';
+
+    var action = authMode==='signin' ? signIn(email, password) : signUp(email, password);
+    action.then(function(data){
+      if(data.access_token){
+        saveSession({access_token: data.access_token, refresh_token: data.refresh_token, user: data.user});
+        enterApp();
+      } else {
+        // Sign-up succeeded but email confirmation is required
+        showAuthError('Cuenta creada. Revisa tu correo para confirmarla y luego inicia sesión.');
+      }
+    }).catch(function(err){
+      showAuthError(err.message || 'Ha ocurrido un error.');
+    }).finally(function(){
+      authSubmit.disabled = false;
+      authSubmit.textContent = originalText;
+    });
+  });
+
+  document.getElementById('logout-btn-inline').addEventListener('click', function(e){
+    e.stopPropagation();
+    clearSession();
+    document.getElementById('app').style.display = 'none';
+    document.getElementById('auth-screen').style.display = 'flex';
+    authEmail.value = '';
+    authPassword.value = '';
+    locations = [];
+  });
+
   // ---------------- Mobile sidebar toggle ----------------
   document.getElementById('sidebar-header').addEventListener('click', function(e){
     if(window.innerWidth <= 760){
@@ -989,7 +1217,11 @@
   });
 
   // ---------------- Init ----------------
-  loadLocations();
+  var storedSession = loadStoredSession();
+  if(storedSession && storedSession.access_token){
+    session = storedSession;
+    enterApp();
+  }
 
 })();
 </script>
