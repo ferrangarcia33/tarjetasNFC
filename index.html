@@ -68,10 +68,9 @@
   }
   .brand-mark{
     width:30px;height:30px;border-radius:8px;
-    background:var(--gold);
-    display:flex;align-items:center;justify-content:center;
-    color:var(--ink);font-size:15px;font-weight:700;
     flex-shrink:0;
+    display:block;
+    object-fit:cover;
   }
   .tagline{
     margin-top:4px;
@@ -395,7 +394,7 @@
 
 <div id="auth-screen">
   <div id="auth-box">
-    <div id="auth-brand"><div class="brand-mark">T</div>TapRuta</div>
+    <div id="auth-brand"><img class="brand-mark" src="data:image/png;base64,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" alt="TapRuta">TapRuta</div>
     <div id="auth-subtitle">Inicia sesión o crea una cuenta para guardar tus locales.</div>
     <div id="auth-tabs">
       <div class="auth-tab active" data-mode="signin">Iniciar sesión</div>
@@ -421,7 +420,7 @@
   <div id="sidebar">
     <div id="sidebar-header">
       <div id="sidebar-drag"></div>
-      <div class="brand"><div class="brand-mark">T</div>TapRuta</div>
+      <div class="brand"><img class="brand-mark" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAYAAABS3GwHAAALr0lEQVR4nO3de4xcVR0H8O+dmZ3H7s7stNudffSx7W5KyyPVNuXRhxAeIUj/ILQxrUYlmsaICYkSXxGiUYmIGA2BGCJGkQhiKSokLRVtC1oplLK1ULALbHm0u9vZ7S67O52d94x/kNblMjs7577vPd9P0r/ae+Z07u97z7mPuUeBw7Sv2Vixuw9knmTfAcXuPsxka2dY7ATYGwrLP5hFT7VYHQbLPoyFTyKsCoLpH8LCJz3MDoJpjbPwyUhmBcHwRln4ZCajg+AzsjEWP5nN6BozJE0sfLKDEaOB7hGAxU92MaL2dAWAxU9201uDmgPA4ien0FOLmgLA4ien0VqTwgFg8ZNTaalNoQCw+MnpRGu07gCw+MktRGq1rgCw+Mlt6q3ZOQPA4ie3qqd2DX0UgshtagaAR39yu7lqeNYAsPjJK2rVMqdAJLWqAeDRn7xmtprmCEBS+1gAePQnr6pW2xwBSGofCQCP/uR16hrnCEBSOx8AHv1JFjNrnSMASY0BIKn5AE5/SD7nap4jAEktYHcHZNMUKqMpWEYoUEEoUEa5oiBfUpArKpjM+JEvOmr9CM9jAEwSDZdxSVcWK9qzuKA9h654EYloEZGGcs3tprJ+jKb8eHcsiLdHQuhPhnBsKIxCicEwAwNgoHhjCddfmMKG3mlcsjADn4aajYVLiIVL6G3L49qVZwEA2YIPfScjeP7NJjz3ZjNHCQMpPAHWb3kih61rJ3DV8jQCfnO/zlTWh93HYnj85TgmMn5TP0sGDIAOnS0FbN84jqtXnLV8ralMwYc/HY7j0UNxFDk90owB0OimT0zi1qvGEArY+/W9cyaIu/ck8NZIyNZ+uBUDIKgxWMb3NyVx+bJpu7tyXqGk4Kd7EtjX32x3V1yH9wEEJKJF3L9t0FHFDwAN/gru3JTE1rUTdnfFdXgVqE4Lmou4b+sgOmJFu7tSlQLgq1eOIZP34elXY3Z3xzU4AtQhGi7j51uGHVv8M3392lGs63HWCOVkDMAcFADfuyGJ7ta83V2pi6IA371hBG1R54fVCRiAOWxZM4krXHZEjYVL+Pb1o3Z3wxV4DlBDIlrE9o1jutsplhUceT+CIycj6E+GcHoqgIlpP7IFHxr8FUSCZcxvKmHJvDxWduRw+bJpLNU54qztnsaG3jT+PdCku/9exsugNdx5Y/L84whapLI+7HgljqePxjCVFbtruzyRw7ZLJ3TdZDv5QQNu+d0ScAfPjlOgWfQsyOMaHcW/93gzPv/bJfjDS/OEix8A3hoJ4ce72vGNHV04PaVtoF48r4B1PWlN28qCAZjF5tWTmo68FQAPPLcAd+1u11T4akdPRXDro4vw3+Gwpu1vXj2puw9exgBU0Rwq47oLU5q2vW9vG57sazG0PxMZP77zl068P94gvO2aJRnEwiVD++MlDEAV63vTmp7x+et/WvDUUXNuQqWyPvxwVwdKZbFxyacAG3rddRXLSgxAFRt6xefNgxMNePCfrSb05v9OjAbx5yPio8snF2dM6I03MAAqPgVY2y1eML85MB85C36o8kRfC4qCo8BFnVmTeuN+DIBKd2sejcHaP1tUG5powPNvWvMk5mgqgCPvR4S2WTSvIPx/kgUDoLKyPSe8zTOvRy291v7CiUbhbdpd8ByTHRgAlWULxO/AvmDx3VYtP35xw4N8dmAAVDpiBaF/n8r6cOJM0KTeVDc4IX45NB7hpdBqGAAV0acoB0at/yliOie+20JzvI5FVnwYTqW1SexIOazxMQU9CiVF+M5wyoC70l7EAKiEBY+U42l7vsKv/XGhLZ/rNZwCqQQF7wDzJVXuxgCoiAZA9KYUOQsDoMJylgsDQFJjAEhqDABJjQEgqTEAJDXeCLNBb1seAZ+172oYPRvAeJp3g9UYABvcu2UI8xqtfTjtoQOteOxQ3NLPdANOgUhqDABJjQEgqTEAJDUGgKTGAJDUGACSGgNAUmMAVMqCN2gVvn3f1RgAlUxe7Ctp8DMAbsZHIVQyBR+aQvX/MF7k356z+cGlwtuo7b99QHcbxBHgY6bzYj+KbGu2/oVTWl7dTtUxACqpnNgTk0vmW798aoxveTMMA6Ay+IHYawe7W/PC7xLSKxbmW96MwgCovDsm9p5Pn/LhMkRW6m0Tf4M1VccAqLynYR2uqy/QvpqkFqsWcsELozAAKm9rePX4lcvTlr19WYH1I46XMQAqI6mA8GqMwUAFn7tswpwOqazrSaOzRewV7jQ7BqCKgyfEF7y4efUkejQsriFq61qu+2skBqCKF98RX4Io4KvgjhuTpl4R+vTFKaxaxOmPkRiAKl49FcHwpPjJcM+CPH6wKYmACY9HdMULuO2aM4a3KzsGoIpyBdipcbX3K3qm8ZObTqNZwyMSs+luzeOXnxlChKu8GI4BmMWu12KY0riqyqVLp/HQF07isqX6V2jf0JvGA9sGkRBcuonqw4fhZpErKnj85Ti+8qkxTdt3xIq4Z/MwjpyMYGdfCw6924hiqb7njAK+Ci5dmsEXrxjHyg7e9DITA1DDE6+04LqVKfS0ab+6s3pxBqsXZ5DO+XB0MILjwyEMTTZgPO1HtqigwV9BLFxGNFxGW3MRqxZlcElXlg+8WYQBqKFYVnDv3xP41WdPQdG5ckZTqIz1PWms70kb0zkyBM8B5nD8dAiPvDjP7m6QSRiAOvz+4Hzs62+2uxtkAgagDhUA9/wtgdeHxNbmNcNbIyF8+ZHFuGt3u91d8QQGoE75ooJvPdmJlzTcJTbSr//VinfOBDE8ydM3IzAAAjIFH+54qgPPHIva8vm7Xovh8HsRWz7bqxgAQaWygp89m8DdexJIZa37+gZGg7h//wLLPk8WDIBGz74RxS0PL8H+/mbT3wzUnwzhmzu7kOOq9IZjAHT4YNqPH+1qx/ZHFmPv8Wbhl2rNpVhS8NihOG57fCEmMlzeyAxK+5qNvOVokES0iGtWnMXG5Wlc1JnVvOp8KuvDP45HseNwHKenqp/sdsUL+NK68brb3NcfxcET9p7AOxEDYJL5TSVc3JlFb1sOPW15LGwpoDlcRmPwwz/lioJ8UUE658NY2o+RVABvj4TwxnAYR0+FUSxzumMFBoCkxnMAkhoDQFJjAEhqDABJjQEgqTEAJDUGgKTGAJDUGACSGgNAUmMASGoMAEmNASCpMQAkNQaApMYAkNQYAJIaA0BSYwBIagwASY0BIKkxACQ1BoCkxgCQ1BgAkhoDQFJjAEhqDABJjQEgqTEAJDUGgKTGAJDUGACSGgNAUvNUAPbfPuCqds1s223t2sVTATCTGTueRWo/zwTg3E43eudbUUxuCYJZ37GdPBMAKxi5491S9F7niQCod7pRRWBlMTk9EGZ9x3bzRACsZMSOd3qxy8RVC2UbtYOv/kUv27WwXSdzVQDO0bqj5toxbNfcdp3IlVMgLV90PduwXXPbdSJXjgAzzXW00rpj2K657TqFK0cAIqO4OgBuu5pST7te/D85masDQKRXwO4OGGXmXHTmUWn/7QO65qlmtVurbVHqbZ3erpO4dgSYuQPUhainMK1qt1bbeorLbe3aLZDsO+DaK0G1CvLc32nZOXa0a2bbTmzXCZJ9BxQFANwaACI9kn0HFNdOgYiMwACQ1BgAkpoP+HAuZHdHiKx0ruY5ApDUGACS2vkAcBpEsphZ6xwBSGofCQBHAfI6dY1zBCCpfSwAHAXIq6rVNkcAklrVAHAUIK+ZraY5ApDUZg0ARwHyilq1XHMEYAjI7eaqYU6BSGpzBoCjALlVPbVb1wjAEJDb1FuzdU+BGAJyC5FaFToHYAjI6URrVPgkmCEgp9JSm5quAjEE5DRaa1LzZVCGgJxCTy3qug/AEJDd9Nag7hthDAHZxYjaM7R4+YpFsoKRB11DH4XgaEBmM7rGTCtYjgZkJLMOrqYfsRkE0sPsWYVlUxYGgURYNZ22fM7OIFAtVp9H2nrSyjAQYO/FE8ddtWEovM1pVwr/Bxr05rwCYMBpAAAAAElFTkSuQmCC" alt="TapRuta">TapRuta</div>
       <div class="tagline">Tu mapa de ventas puerta a puerta. Toca cualquier punto del mapa para registrar un local.</div>
       <button id="logout-btn-inline">Cerrar sesión</button>
     </div>
@@ -565,6 +564,18 @@
       var raw = localStorage.getItem('taparuta_session');
       return raw ? JSON.parse(raw) : null;
     }catch(e){ return null; }
+  }
+
+  function translateAuthError(raw){
+    var msg = (raw || '').toLowerCase();
+    if(msg.indexOf('invalid login credentials') !== -1) return 'Correo o contraseña incorrectos.';
+    if(msg.indexOf('user already registered') !== -1) return 'Ya existe una cuenta con ese correo.';
+    if(msg.indexOf('password should be at least') !== -1) return 'La contraseña debe tener al menos 6 caracteres.';
+    if(msg.indexOf('unable to validate email') !== -1 || msg.indexOf('invalid format') !== -1) return 'El correo electrónico no es válido.';
+    if(msg.indexOf('email not confirmed') !== -1) return 'Debes confirmar tu correo antes de iniciar sesión.';
+    if(msg.indexOf('for security purposes') !== -1) return 'Por seguridad, espera unos segundos antes de volver a intentarlo.';
+    if(msg.indexOf('network') !== -1 || msg.indexOf('failed to fetch') !== -1) return 'No se pudo conectar. Revisa tu conexión a internet.';
+    return 'Ha ocurrido un error. Inténtalo de nuevo.';
   }
 
   function authRequest(path, body){
@@ -1192,7 +1203,7 @@
         showAuthError('Cuenta creada. Revisa tu correo para confirmarla y luego inicia sesión.');
       }
     }).catch(function(err){
-      showAuthError(err.message || 'Ha ocurrido un error.');
+      showAuthError(translateAuthError(err.message));
     }).finally(function(){
       authSubmit.disabled = false;
       authSubmit.textContent = originalText;
