@@ -311,6 +311,25 @@
   .btn-danger{background:transparent;color:var(--s-no-interesado);border:1.5px solid var(--s-no-interesado);}
   .btn-danger:hover{background:rgba(193,88,74,0.08);}
 
+  #confirm-overlay{
+    position:fixed;inset:0;background:rgba(23,50,60,0.55);
+    z-index:950;display:none;
+  }
+  #confirm-modal{
+    position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);
+    width:340px;max-width:88vw;
+    background:var(--paper);color:var(--ink);
+    border-radius:12px;box-shadow:0 12px 32px rgba(0,0,0,0.3);
+    z-index:951;display:none;padding:20px;
+  }
+  #confirm-message{font-size:14px;line-height:1.5;margin-bottom:18px;}
+  #confirm-actions{display:flex;gap:10px;justify-content:flex-end;}
+  #confirm-actions .btn{flex:none;padding:9px 16px;}
+  .btn-danger-solid{background:var(--s-no-interesado);color:#fff;}
+  .btn-danger-solid:hover{background:#a8483b;}
+  #confirm-cancel{background:var(--paper-dim);color:var(--ink);}
+  #confirm-cancel:hover{background:#c9c6b6;}
+
   @media (max-width: 760px){
     #sidebar{
       position:fixed;left:0;bottom:0;width:100%;min-width:0;
@@ -362,6 +381,14 @@
 </div>
 
 <div id="overlay"></div>
+<div id="confirm-overlay"></div>
+<div id="confirm-modal">
+  <div id="confirm-message"></div>
+  <div id="confirm-actions">
+    <button class="btn" id="confirm-cancel">Cancelar</button>
+    <button class="btn btn-danger-solid" id="confirm-accept">Eliminar</button>
+  </div>
+</div>
 <div id="panel">
   <div id="panel-header">
     <div>
@@ -752,6 +779,34 @@
     overlay.style.display = 'block';
     panel.classList.add('open');
   }
+
+  // ---------------- Custom confirm dialog ----------------
+  var confirmOverlay = document.getElementById('confirm-overlay');
+  var confirmModal = document.getElementById('confirm-modal');
+  var confirmMessage = document.getElementById('confirm-message');
+  var confirmAccept = document.getElementById('confirm-accept');
+  var confirmCancel = document.getElementById('confirm-cancel');
+
+  function showConfirm(message){
+    return new Promise(function(resolve){
+      confirmMessage.textContent = message;
+      confirmOverlay.style.display = 'block';
+      confirmModal.style.display = 'block';
+      function cleanup(result){
+        confirmOverlay.style.display = 'none';
+        confirmModal.style.display = 'none';
+        confirmAccept.removeEventListener('click', onAccept);
+        confirmCancel.removeEventListener('click', onCancel);
+        confirmOverlay.removeEventListener('click', onCancel);
+        resolve(result);
+      }
+      function onAccept(){ cleanup(true); }
+      function onCancel(){ cleanup(false); }
+      confirmAccept.addEventListener('click', onAccept);
+      confirmCancel.addEventListener('click', onCancel);
+      confirmOverlay.addEventListener('click', onCancel);
+    });
+  }
   function closePanel(){
     overlay.style.display = 'none';
     panel.classList.remove('open');
@@ -885,20 +940,20 @@
     if(!editingId) return;
     var loc = locations.find(function(l){return l.id===editingId;});
     var name = loc ? loc.name : 'este local';
-    if(!window.confirm('¿Seguro que quieres eliminar "' + name + '"? Esta acción no se puede deshacer.')){
-      return;
-    }
-    var delBtn = document.getElementById('btn-delete');
-    delBtn.disabled = true;
-    deleteLocationRemote(editingId).then(function(){
-      locations = locations.filter(function(l){return l.id!==editingId;});
-      closePanel();
-      renderAll();
-    }).catch(function(err){
-      console.error('Delete error', err);
-      showSyncError('No se pudo eliminar el local. Comprueba tu conexión e inténtalo de nuevo.');
-    }).finally(function(){
-      delBtn.disabled = false;
+    showConfirm('¿Seguro que quieres eliminar "' + name + '"? Esta acción no se puede deshacer.').then(function(confirmed){
+      if(!confirmed) return;
+      var delBtn = document.getElementById('btn-delete');
+      delBtn.disabled = true;
+      deleteLocationRemote(editingId).then(function(){
+        locations = locations.filter(function(l){return l.id!==editingId;});
+        closePanel();
+        renderAll();
+      }).catch(function(err){
+        console.error('Delete error', err);
+        showSyncError('No se pudo eliminar el local. Comprueba tu conexión e inténtalo de nuevo.');
+      }).finally(function(){
+        delBtn.disabled = false;
+      });
     });
   };
 
