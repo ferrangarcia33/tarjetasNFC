@@ -368,17 +368,20 @@
     #sidebar-header{padding:22px 20px 16px;}
     #sidebar-drag{display:none;}
     #panel{width:100%;max-width:100%;}
-    #locate-btn{bottom:24px;}
-    .leaflet-bottom.leaflet-right{
-      bottom:calc(24px + 42px + 10px) !important;
+    #locate-btn{
+      top:calc(env(safe-area-inset-top, 0px) + 16px);
+      bottom:auto;right:16px;
+    }
+    .leaflet-top.leaflet-right{
+      top:calc(env(safe-area-inset-top, 0px) + 16px + 42px + 10px) !important;
       right:16px !important;
     }
     #menu-btn{display:flex;}
-    .leaflet-bottom.leaflet-right .leaflet-control-zoom{
+    .leaflet-top.leaflet-right .leaflet-control-zoom{
       margin:0 !important;
       width:42px;
     }
-    .leaflet-bottom.leaflet-right .leaflet-control-zoom a{
+    .leaflet-top.leaflet-right .leaflet-control-zoom a{
       width:42px;height:42px;line-height:42px;
     }
   }
@@ -423,7 +426,7 @@
 
   #menu-btn{
     display:none;
-    position:fixed;top:20px;left:16px;z-index:860;
+    position:fixed;top:calc(env(safe-area-inset-top, 0px) + 16px);left:16px;z-index:860;
     background:var(--ink);color:var(--paper);
     border:none;width:42px;height:42px;border-radius:50%;
     align-items:center;justify-content:center;
@@ -710,7 +713,7 @@
   // ---------------- Map setup ----------------
   var DEFAULT_CENTER = [41.3874, 2.1686]; // Barcelona
   var map = L.map('map', {zoomControl:false, attributionControl:false}).setView(DEFAULT_CENTER, 14);
-  L.control.zoom({position: window.innerWidth<=760 ? 'bottomright' : 'bottomleft'}).addTo(map);
+  L.control.zoom({position: window.innerWidth<=760 ? 'topright' : 'bottomleft'}).addTo(map);
   L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
     maxZoom: 19
   }).addTo(map);
