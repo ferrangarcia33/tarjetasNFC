@@ -355,6 +355,16 @@
   #confirm-cancel{background:var(--paper-dim);color:var(--ink);}
   #confirm-cancel:hover{background:#c9c6b6;}
 
+  #menu-btn{
+    display:none;
+    position:fixed;top:calc(env(safe-area-inset-top, 0px) + 50px);left:16px;z-index:860;
+    background:var(--ink);color:var(--paper);
+    border:none;width:42px;height:42px;border-radius:50%;
+    align-items:center;justify-content:center;
+    cursor:pointer;box-shadow:0 3px 10px rgba(0,0,0,0.25);
+    font-size:18px;
+  }
+
   @media (max-width: 760px){
     #sidebar{
       position:fixed;left:0;top:0;bottom:0;width:86%;max-width:340px;
@@ -369,11 +379,11 @@
     #sidebar-drag{display:none;}
     #panel{width:100%;max-width:100%;}
     #locate-btn{
-      top:calc(env(safe-area-inset-top, 0px) + 16px);
+      top:calc(env(safe-area-inset-top, 0px) + 50px);
       bottom:auto;right:16px;
     }
     .leaflet-top.leaflet-right{
-      top:calc(env(safe-area-inset-top, 0px) + 16px + 42px + 10px) !important;
+      top:calc(env(safe-area-inset-top, 0px) + 50px + 42px + 10px) !important;
       right:16px !important;
     }
     #menu-btn{display:flex;}
@@ -424,15 +434,6 @@
   }
   #logout-btn-inline:hover{color:var(--paper);}
 
-  #menu-btn{
-    display:none;
-    position:fixed;top:calc(env(safe-area-inset-top, 0px) + 16px);left:16px;z-index:860;
-    background:var(--ink);color:var(--paper);
-    border:none;width:42px;height:42px;border-radius:50%;
-    align-items:center;justify-content:center;
-    cursor:pointer;box-shadow:0 3px 10px rgba(0,0,0,0.25);
-    font-size:18px;
-  }
   #sidebar-overlay{
     display:none;
     position:fixed;inset:0;background:rgba(23,50,60,0.45);
