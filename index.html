@@ -275,13 +275,26 @@
     display:block;font-size:11px;text-transform:uppercase;letter-spacing:.05em;
     color:#5c6b70;margin-bottom:6px;font-weight:600;
   }
-  .field input[type=text], .field input[type=number], .field input[type=date], .field textarea{
+  .field input[type=text], .field input[type=number], .field input[type=date], .field input[type=password], .field textarea{
     width:100%;padding:9px 11px;border-radius:7px;border:1.5px solid var(--paper-dim);
     font-family:'IBM Plex Sans',sans-serif;font-size:13.5px;background:#fff;color:var(--ink);
     outline:none;
   }
   .field input:focus, .field textarea:focus{border-color:var(--ink-3);}
   .field textarea{resize:vertical;min-height:60px;}
+
+  #auth-form .field input[type=text],
+  #auth-form .field input[type=password]{
+    padding:13px 14px;font-size:16px;border-radius:9px;
+  }
+  .password-wrap{position:relative;}
+  .password-wrap input{padding-right:44px !important;}
+  #auth-password-toggle{
+    position:absolute;top:50%;right:6px;transform:translateY(-50%);
+    background:none;border:none;cursor:pointer;
+    font-size:18px;line-height:1;padding:6px;color:#5c6b70;
+  }
+  #auth-password-toggle:hover{color:var(--ink);}
 
   .option-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
   .option-btn{
@@ -408,7 +421,10 @@
       </div>
       <div class="field">
         <label for="auth-password">Contraseña</label>
-        <input type="password" id="auth-password" placeholder="Mínimo 6 caracteres" autocomplete="current-password">
+        <div class="password-wrap">
+          <input type="password" id="auth-password" placeholder="Mínimo 6 caracteres" autocomplete="current-password">
+          <button type="button" id="auth-password-toggle" aria-label="Mostrar contraseña">👁</button>
+        </div>
       </div>
       <button class="btn" id="auth-submit">Iniciar sesión</button>
     </div>
@@ -1155,6 +1171,14 @@
   var authSubmit = document.getElementById('auth-submit');
   var authEmail = document.getElementById('auth-email');
   var authPassword = document.getElementById('auth-password');
+  var authPasswordToggle = document.getElementById('auth-password-toggle');
+
+  authPasswordToggle.addEventListener('click', function(){
+    var isHidden = authPassword.type === 'password';
+    authPassword.type = isHidden ? 'text' : 'password';
+    authPasswordToggle.textContent = isHidden ? '🙈' : '👁';
+    authPasswordToggle.setAttribute('aria-label', isHidden ? 'Ocultar contraseña' : 'Mostrar contraseña');
+  });
 
   authTabs.forEach(function(tab){
     tab.addEventListener('click', function(){
