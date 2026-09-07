@@ -875,7 +875,8 @@
     markers = {};
     locations.forEach(function(loc){
       var m = L.marker([loc.lat, loc.lng], {icon: pinIcon(loc)}).addTo(map);
-      m.on('click', function(){
+      m.on('click', function(e){
+        L.DomEvent.stopPropagation(e);
         selectedId = loc.id;
         openPanel(loc);
         renderList();
@@ -1264,12 +1265,16 @@
   });
 
   authTabs.forEach(function(tab){
-    tab.addEventListener('click', function(){
+    tab.tabIndex = 0;
+    tab.setAttribute('role', 'button');
+    function selectAuthTab(){
       authMode = tab.dataset.mode;
       authTabs.forEach(function(t){ t.classList.toggle('active', t===tab); });
       authSubmit.textContent = authMode==='signin' ? 'Iniciar sesión' : 'Crear cuenta';
       authError.style.display = 'none';
-    });
+    }
+    tab.addEventListener('click', selectAuthTab);
+    tab.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); selectAuthTab(); } });
   });
 
   function showAuthError(msg){
@@ -1325,6 +1330,11 @@
     authEmail.value = '';
     authPassword.value = '';
     locations = [];
+    activeFilter = 'all';
+    searchTerm = '';
+    selectedId = null;
+    document.getElementById('search').value = '';
+    renderAll();
   });
 
   // ---------------- Mobile sidebar toggle ----------------
