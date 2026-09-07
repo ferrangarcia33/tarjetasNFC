@@ -139,7 +139,7 @@
 
   #stats{
     display:grid;
-    grid-template-columns:1fr 1fr 1fr;
+    grid-template-columns:1fr 1fr;
     gap:1px;
     background:var(--line);
     margin:16px 20px 4px;
@@ -558,6 +558,11 @@
       <input type="number" id="f-units" min="1" placeholder="Ej. 2">
     </div>
 
+    <div class="field" id="f-amount-wrap" style="display:none;">
+      <label for="f-amount">Dinero ganado (€)</label>
+      <input type="number" id="f-amount" min="0" step="0.01" placeholder="Ej. 30">
+    </div>
+
     <div class="field" id="f-followup-wrap" style="display:none;">
       <label for="f-followup">Fecha de seguimiento</label>
       <input type="date" id="f-followup">
@@ -789,11 +794,14 @@
     var visited = locations.filter(function(l){return l.status!=='no_visitado';}).length;
     var sold = locations.filter(function(l){return l.status==='vendido';});
     var units = sold.reduce(function(sum,l){return sum + (parseInt(l.units)||0);}, 0);
+    var revenue = sold.reduce(function(sum,l){return sum + (parseFloat(l.amount)||0);}, 0);
     var conv = visited>0 ? Math.round((sold.length/visited)*100) : 0;
+    var revenueLabel = revenue.toLocaleString('es-ES', {minimumFractionDigits:0, maximumFractionDigits:2});
     el.innerHTML =
       '<div class="stat"><div class="stat-num">'+visited+'</div><div class="stat-label">Visitados</div></div>'+
       '<div class="stat"><div class="stat-num">'+units+'</div><div class="stat-label">Uds. vendidas</div></div>'+
-      '<div class="stat"><div class="stat-num">'+conv+'%</div><div class="stat-label">Conversión</div></div>';
+      '<div class="stat"><div class="stat-num">'+conv+'%</div><div class="stat-label">Conversión</div></div>'+
+      '<div class="stat"><div class="stat-num">'+revenueLabel+'€</div><div class="stat-label">Ganado</div></div>';
   }
 
   // ---------------- Rendering: list ----------------
@@ -825,6 +833,7 @@
       card.className = 'loc-card' + (loc.id===selectedId ? ' selected' : '');
       var metaBits = [cat.label];
       if(loc.status==='vendido' && loc.units) metaBits.push(loc.units + ' ud.');
+      if(loc.status==='vendido' && loc.amount) metaBits.push(loc.amount + '€');
       if(loc.status==='seguimiento' && loc.followUp) metaBits.push('seg. ' + loc.followUp);
       card.innerHTML =
         '<div class="loc-marker" style="background:'+cssColor(st.color)+'"><span>'+cat.icon+'</span></div>'+
@@ -886,7 +895,7 @@
   function toDb(loc){
     return {
       id: loc.id, name: loc.name, category: loc.category, status: loc.status,
-      units: loc.units, follow_up: loc.followUp || null, contact: loc.contact || null,
+      units: loc.units, amount: loc.amount, follow_up: loc.followUp || null, contact: loc.contact || null,
       notes: loc.notes || null, lat: loc.lat, lng: loc.lng,
       created_at: loc.createdAt, updated_at: loc.updatedAt
     };
@@ -894,7 +903,7 @@
   function fromDb(row){
     return {
       id: row.id, name: row.name, category: row.category, status: row.status,
-      units: row.units, followUp: row.follow_up, contact: row.contact,
+      units: row.units, amount: row.amount, followUp: row.follow_up, contact: row.contact,
       notes: row.notes, lat: row.lat, lng: row.lng,
       createdAt: row.created_at, updatedAt: row.updated_at
     };
@@ -944,6 +953,7 @@
     if('category' in patch) dbPatch.category = patch.category;
     if('status' in patch) dbPatch.status = patch.status;
     if('units' in patch) dbPatch.units = patch.units;
+    if('amount' in patch) dbPatch.amount = patch.amount;
     if('followUp' in patch) dbPatch.follow_up = patch.followUp;
     if('contact' in patch) dbPatch.contact = patch.contact;
     if('notes' in patch) dbPatch.notes = patch.notes;
@@ -1000,6 +1010,7 @@
     document.getElementById('f-contact').value = '';
     document.getElementById('f-notes').value = '';
     document.getElementById('f-units').value = '';
+    document.getElementById('f-amount').value = '';
     document.getElementById('f-followup').value = '';
     document.getElementById('btn-delete').style.display = 'none';
     setCategory(prefill && prefill.category ? prefill.category : 'otro');
@@ -1019,6 +1030,7 @@
     document.getElementById('f-contact').value = loc.contact || '';
     document.getElementById('f-notes').value = loc.notes || '';
     document.getElementById('f-units').value = loc.units || '';
+    document.getElementById('f-amount').value = (loc.amount !== null && loc.amount !== undefined) ? loc.amount : '';
     document.getElementById('f-followup').value = loc.followUp || '';
     document.getElementById('btn-delete').style.display = 'block';
     setCategory(loc.category);
@@ -1115,6 +1127,7 @@
       b.classList.toggle('active', b.dataset.id===id);
     });
     document.getElementById('f-units-wrap').style.display = (id==='vendido') ? 'block' : 'none';
+    document.getElementById('f-amount-wrap').style.display = (id==='vendido') ? 'block' : 'none';
     document.getElementById('f-followup-wrap').style.display = (id==='seguimiento') ? 'block' : 'none';
   }
 
@@ -1142,6 +1155,7 @@
         category: currentCategory,
         status: currentStatus,
         units: currentStatus==='vendido' ? (parseInt(document.getElementById('f-units').value)||1) : null,
+        amount: currentStatus==='vendido' ? (parseFloat(document.getElementById('f-amount').value)||0) : null,
         followUp: currentStatus==='seguimiento' ? document.getElementById('f-followup').value : null,
         contact: document.getElementById('f-contact').value.trim(),
         notes: document.getElementById('f-notes').value.trim(),
@@ -1167,6 +1181,7 @@
         category: currentCategory,
         status: currentStatus,
         units: currentStatus==='vendido' ? (parseInt(document.getElementById('f-units').value)||1) : null,
+        amount: currentStatus==='vendido' ? (parseFloat(document.getElementById('f-amount').value)||0) : null,
         followUp: currentStatus==='seguimiento' ? document.getElementById('f-followup').value : null,
         contact: document.getElementById('f-contact').value.trim(),
         notes: document.getElementById('f-notes').value.trim(),
@@ -1217,9 +1232,9 @@
   // ---------------- Export CSV ----------------
   document.getElementById('export-btn').onclick = function(){
     if(locations.length===0) return;
-    var rows = [['Nombre','Categoria','Estado','Unidades vendidas','Seguimiento','Contacto','Notas','Lat','Lng']];
+    var rows = [['Nombre','Categoria','Estado','Unidades vendidas','Dinero ganado (€)','Seguimiento','Contacto','Notas','Lat','Lng']];
     locations.forEach(function(l){
-      rows.push([l.name, catOf(l.category).label, statusOf(l.status).label, l.units||'', l.followUp||'', l.contact||'', (l.notes||'').replace(/\n/g,' '), l.lat, l.lng]);
+      rows.push([l.name, catOf(l.category).label, statusOf(l.status).label, l.units||'', l.amount||'', l.followUp||'', l.contact||'', (l.notes||'').replace(/\n/g,' '), l.lat, l.lng]);
     });
     var csv = rows.map(function(r){
       return r.map(function(v){ return '"' + String(v).replace(/"/g,'""') + '"'; }).join(',');
