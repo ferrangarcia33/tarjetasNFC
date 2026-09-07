@@ -1029,7 +1029,7 @@
     document.getElementById('f-name').value = loc.name || '';
     document.getElementById('f-contact').value = loc.contact || '';
     document.getElementById('f-notes').value = loc.notes || '';
-    document.getElementById('f-units').value = loc.units || '';
+    document.getElementById('f-units').value = (loc.units !== null && loc.units !== undefined) ? loc.units : '';
     document.getElementById('f-amount').value = (loc.amount !== null && loc.amount !== undefined) ? loc.amount : '';
     document.getElementById('f-followup').value = loc.followUp || '';
     document.getElementById('btn-delete').style.display = 'block';
@@ -1154,7 +1154,7 @@
         name: name,
         category: currentCategory,
         status: currentStatus,
-        units: currentStatus==='vendido' ? (parseInt(document.getElementById('f-units').value)||1) : null,
+        units: currentStatus==='vendido' ? (function(){ var v = parseInt(document.getElementById('f-units').value); return isNaN(v) ? 1 : v; })() : null,
         amount: currentStatus==='vendido' ? (parseFloat(document.getElementById('f-amount').value)||0) : null,
         followUp: currentStatus==='seguimiento' ? document.getElementById('f-followup').value : null,
         contact: document.getElementById('f-contact').value.trim(),
@@ -1180,7 +1180,7 @@
         name: name,
         category: currentCategory,
         status: currentStatus,
-        units: currentStatus==='vendido' ? (parseInt(document.getElementById('f-units').value)||1) : null,
+        units: currentStatus==='vendido' ? (function(){ var v = parseInt(document.getElementById('f-units').value); return isNaN(v) ? 1 : v; })() : null,
         amount: currentStatus==='vendido' ? (parseFloat(document.getElementById('f-amount').value)||0) : null,
         followUp: currentStatus==='seguimiento' ? document.getElementById('f-followup').value : null,
         contact: document.getElementById('f-contact').value.trim(),
@@ -1234,7 +1234,7 @@
     if(locations.length===0) return;
     var rows = [['Nombre','Categoria','Estado','Unidades vendidas','Dinero ganado (€)','Seguimiento','Contacto','Notas','Lat','Lng']];
     locations.forEach(function(l){
-      rows.push([l.name, catOf(l.category).label, statusOf(l.status).label, l.units||'', l.amount||'', l.followUp||'', l.contact||'', (l.notes||'').replace(/\n/g,' '), l.lat, l.lng]);
+      rows.push([l.name, catOf(l.category).label, statusOf(l.status).label, (l.units!==null && l.units!==undefined) ? l.units : '', (l.amount!==null && l.amount!==undefined) ? l.amount : '', l.followUp||'', l.contact||'', (l.notes||'').replace(/\n/g,' '), l.lat, l.lng]);
     });
     var csv = rows.map(function(r){
       return r.map(function(v){ return '"' + String(v).replace(/"/g,'""') + '"'; }).join(',');
